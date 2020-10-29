@@ -1,0 +1,47 @@
+@media (min-width: 700px) {
+    .back svg {
+        max-width: 360px;
+        max-height: 260px;
+    }
+
+    .girl svg {
+        max-width: 200px;
+        max-height: 284px;
+    }
+}
+
+@media (max-width: 525px) {
+    body {
+        grid-template-columns: 50vw 50vw;
+        grid-template-rows: 50vh 20vh 50vh 50vh;
+        grid-template-areas: "girl girl"
+                            "player player"
+                            "time sound";
+    }
+
+    .back svg {
+        max-width: 360px;
+        max-height: 260px;
+    }
+
+    .girl svg {
+        max-width: 200px;
+        max-height: 284px;
+    }
+
+    div.player {
+        height: 20vh;
+        grid-template-columns: 4fr 6fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "progress timer";
+    }
+
+    .player img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .player h1 {
+        font-size: 1.5rem;
+    }
+}
