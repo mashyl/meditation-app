@@ -15,20 +15,31 @@ const app = () => {
     const aura = document.querySelector('.aura');
 
     back.classList.add('disabled');
+    song.volume = 0.5;
+    let duration = 180;
+    let timeLeft;
+    let seconds;
+    let minutes;
+    let currentTime;
 
+    //choosing and picking sounds
     soundBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
+            if (!song.paused) {
+                song.pause();
+            }
+            currentTime = song.currentTime;
             song.src = btn.getAttribute('data-sound');
-            song.currentTime = 0;
+            song.currentTime = currentTime;
+            playBtn.click();
         })
     });
 
-    let duration = 180;
     //changing duration
     timeSelect.onchange = () => {
         duration = timeSelect.value * 60;
         timeChosen.textContent = `${timeSelect.value} minutes`;
-        song.currentTime = 0;
+        // song.currentTime = 0;
     }
 
     circleProgress.style.strokeDasharray = circleLength;
@@ -39,10 +50,8 @@ const app = () => {
         if (song.paused) {
             song.play();
 
-            timeSelect.disabled = true;
-            soundBtns.forEach(btn => btn.disabled = true);
-            setTimeDiv.classList.add('disabled');
-            setSoundDiv.classList.add('disabled');
+            // timeSelect.disabled = true;
+            // setTimeDiv.classList.add('disabled');
             back.classList.remove('disabled');
             aura.classList.remove('no-display');
 
@@ -52,10 +61,8 @@ const app = () => {
         } else {
             song.pause();
 
-            timeSelect.disabled = false;
-            soundBtns.forEach(btn => btn.disabled = false);
-            setTimeDiv.classList.remove('disabled');
-            setSoundDiv.classList.remove('disabled');
+            // timeSelect.disabled = false;
+            // setTimeDiv.classList.remove('disabled');
             back.classList.add('disabled');
             aura.classList.add('no-display');
 
@@ -67,10 +74,10 @@ const app = () => {
 
     //animate progress circle and time display
     song.addEventListener('timeupdate', () => {
-        let currentTime = song.currentTime;
-        let timeLeft = duration - currentTime;
-        let seconds = Math.floor(timeLeft % 60);
-        let minutes = Math.floor(timeLeft / 60);
+        currentTime = song.currentTime;
+        timeLeft = duration - currentTime;
+        seconds = Math.floor(timeLeft % 60);
+        minutes = Math.floor(timeLeft / 60);
 
         let progress = circleLength - (currentTime / duration) * circleLength;
         circleProgress.style.strokeDashoffset = progress;
