@@ -46,7 +46,7 @@ const app = () => {
             back.classList.remove('disabled');
             aura.classList.remove('no-display');
 
-            playBtn.src = '../foundation_pause.svg';
+            playBtn.src = 'foundation_pause.svg';
             playBtn.classList.add('pause');
             girl.classList.add('animated-girl');
         } else {
@@ -59,7 +59,7 @@ const app = () => {
             back.classList.add('disabled');
             aura.classList.add('no-display');
 
-            playBtn.src = '../bi_play.svg';
+            playBtn.src = 'bi_play.svg';
             playBtn.classList.remove('pause');
             girl.classList.remove('animated-girl');
         }
@@ -84,7 +84,7 @@ const app = () => {
         if (currentTime >= duration) {
             song.pause();
             song.currentTime = 0;
-            playBtn.src = '../bi_play.svg';
+            playBtn.src = 'bi_play.svg';
         }
     });
 }
